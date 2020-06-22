@@ -64,7 +64,7 @@ public class EdgeIndexPerformanceTest {
 
 			v = g.createVertexType("item", "V");
 			v.createProperty("name", OType.STRING);
-			v.createIndex("item", OClass.INDEX_TYPE.FULLTEXT_HASH_INDEX, "name");
+			v.createIndex("item", OClass.INDEX_TYPE.UNIQUE_HASH_INDEX, "name");
 
 		} finally {
 			g.shutdown();
@@ -158,7 +158,7 @@ public class EdgeIndexPerformanceTest {
 	public void testEdgeIndexViaGraphGetEdges() throws Exception {
 		OrientGraph g = factory.getTx();
 		try {
-			for (OIndex<?> index : g.getRawGraph().getMetadata().getIndexManager().getIndexes()) {
+			for (OIndex index : g.getRawGraph().getMetadata().getIndexManager().getIndexes()) {
 
 				System.out.println(index.getName() + " size: " + index.getSize());
 			}
